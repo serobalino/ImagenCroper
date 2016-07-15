@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Demo - Image Cropper &amp; Uploader jQuery Plugin</title>
+        <link rel="stylesheet" href="imagecropper.css" type="text/css" />
+        <style>
+            *, *:after, *:before {
+                -webkit-box-sizing: border-box;
+                   -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            #uploader {
+                width: 200px; 
+                height: 200px; 
+                border-radius: 4px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                position: relative; 
+                top: 50px; 
+                margin: 0 auto; 
+                padding: 85px 20px;
+                text-align: center;
+            }
+            #result {
+                position: absolute;
+                width: 100%;
+                top: 300px;
+                left: 0;
+                text-align: center;
+            }
+            #result > div {
+                display: inline-block;
+                vertical-align: top;
+                margin: 0 5px 5px 0;
+            }
+            #result img {
+                display: block;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="imagecropper.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#uploader').imagecropper({
+                url: 'http://en.sominus.ru/plugins/imagecropper/upload.php',
+                name: 'file',
+                multiple: true,
+                ratio: ['4/3', '3/4', '1/1', '16/9', '3/1'],
+                data: {},
+                drop: true,
+                crop: true,
+                maxWidth: 800,
+                maxHeight: 800,
+                hoverClass: 'hover',
+                focusClass: 'focus',  
+                onChange: function(file, ext, render) {
+    
+                },
+                onSubmit: function(file, ext, render) {
+                    
+                },	
+                onComplete: function(element, file, response, render) {  
+                    var src = response + '?' + Math.random();
+                    
+                    $('#result').prepend(
+                        $('<div>').append(
+                            $('<img>', {src: src}),
+                            $('<a>', {href: src, target: '_blank'}).text(response)
+                        )
+                    )
+                }
+            })
+        })
+        </script>
+    </head>
+    <body>
+        <div id="uploader">Click me or drug&amp;drop</div>
+        <div id="result"></div>
+    </body>
+</html>

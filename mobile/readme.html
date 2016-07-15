@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Image Cropper &amp; Uploader jQuery Plugin</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Image cropper &amp; Uploader&rdquo; Documentation by &ldquo;Sominus&rdquo; v2.1</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Image cropper &amp; Uploader&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 02/09/2013<br>
+					By: Vladimir Yakovlev (<a href="http://codecanyon.net/user/Sominus">Sominus</a>)<br>
+					Email: <a href="mailto:mail@sominus.ru">mail@sominus.ru</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my plugin. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/Grom1k">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#performance">Plugin's performance capabilities</a></li>
+			<li><a href="#enable_the_plugin">How to enable the plugin</a></li>
+			<li><a href="#characteristics">Plugin’s characteristics</a></li>
+			<li><a href="#supported">Supported browsers</a></li>
+		</ol>
+		
+		<hr>
+		
+		<h3 id="performance">A) Plugin's performance capabilities</h3>
+		<p>The Image Cropper Plugin is created for a more convenient cropping of an image in a browser before sending it to the server.</p>
+		
+        <ol>
+    		<li> Plugin allows to crop large-size images that do not fit your screen.</li>
+            <li> Plugin allows to set a necessary size of an image, e.g. 400x300  </li>
+            <li> It is possible to switch on or off multiloading of files, it allows to upload one image or several images at a time.</li>
+            <li> It allows to send extra $_POST data to the server together with loading of an image.</li>
+            <li> It is possible to drag files on the loading pushbutton. </li>
+            <li> it allows to set a max size of an image by width or by height.  </li>
+            <li> Plugin allows to set your own styles at hover or focus </li>
+        </ol>
+        
+        <!-- ******************************** -->
+        
+        <hr />
+        
+        <h3 id="enable_the_plugin">B) How to enable the plugin</h3>
+        
+        <ol>
+            <li>Make sure that jQuery is on. To enable the plugin you have to connect CSS file and JS file with a document body:
+<pre>
+    &lt;link rel="stylesheet" href="imagecropper.css" type="text/css" /&gt;
+    &lt;script src="imagecropper.min.js"&gt;&lt;/script&gt;
+</pre>
+            </li>
+            <li>Add to your HTML, for instance, the following code: 
+<pre>
+    &lt;div id="uploader"&gt;Upload Image&lt;/div&gt;
+</pre>
+            You can also arrange the block with styles with the help of CSS.<br /><br /></li>
+            
+            <li>Activate the plugin itself, e.g.:
+<pre>
+    &lt;script&gt;
+    $(document).ready(function() {
+    	$('#uploader').imagecropper({
+    		url: '/upload.php',
+    		name: 'file',
+    		multiple: true,
+                ratio: ['1/1', '4/3'],
+    		data: {},
+    		drop: true,
+    		crop: true,
+    		maxWidth: false,
+    		maxHeight: false,
+    		hoverClass: 'hover',
+    		focusClass: 'focus',  
+    		onChange: function(file, ext, render) {},
+    		onSubmit: function(file, ext, render) {},
+    		onComplete: function(element, file, response, render) {}
+    	});
+    })
+    &lt;/script&gt;
+</pre>
+            </li>
+            
+            <li>Plugin is ready to send images to the server</li>
+            <li>Customize saving of files on the server, an example of PHP code can be found in the “upload.php” file.</li>
+			<li>The example with code you may see in the example.html</li>
+        </ol>
+        
+        <p><strong>In comments or by e-mail I am willing to help with setting of the script on saving images on the server.</strong></p>
+        
+        <!-- ******************************** -->
+        
+        <hr />
+
+        <h3 id="characteristics">C) Plugin’s characteristics</h3>
+
+		<ul>
+            <li><strong>url: 'http://site.com/upload.php'</strong> – indicates the way the data will be send to</li>
+            
+            <li><strong>name: 'file'</strong> – is responsible for the name of $_POST variable, e.g. php: $_POST['file']</li>
+            
+            <li><strong>multiple: true</strong> – permits or forbids loading of more than 1 file</li>
+            
+            <li><strong>ratio: ['1/1', '4/3']</strong> - can set the aspect ratio selection (You can change the cropping)</li>
+            
+            <li><strong>data: {}</strong> – sends additional data with the cropping of an image, format json for example id: 1</li>
+            
+            <li><strong>drop: true</strong> - permits drag&amp;drop of files</li>
+            
+            <li><strong>crop: true</strong> – allows cropping of images</li>
+            
+            <li><strong>maxWidth: false</strong> – is responsible for a max size of an uploaded image, e.g. if you set 1200 and the original size is 1600, an image will shrink proportionally untill the size of 1200 by width.</li>
+             
+            <li><strong>maxHeight: false</strong> - is responsible for a max size of an uploaded image, e.g. if you set 1200 and the original size is 1600, an image will shrink proportionally untill the size of 1200 by height.</li>
+            
+            <li><strong>hoverClass: 'hover'</strong> – is the category of  CSS styles that is activated when is hovered upon.</li>
+            
+            <li><strong>focusClass: 'focus'</strong> – similarly to hoverClass but is actived when is focused at.</li>
+            
+            <li><strong>onChange:</strong> - callback function is activated when you choose an image, it calls back 3 parameters, file – the file itself, ext - the file extention, render - base64 code of an image, it is used in the src attribute beside &lt;img /&gt; tag.</li>
+            
+            <li><strong>onSubmit:</strong> - callback function is activared when you confirm cropping of an image, it calls back the same parameters as onChange file, ext and render</li>
+            
+            <li><strong>onComplete:</strong> - callback function returnes the element – the very element upon which the plugin is summoned, ext – the file extention, response – the server response, render - base64 code of an image. </li>
+        </ul>
+        
+        
+        <!-- ******************************** -->
+        
+        <hr />
+
+        <h3 id="supported">D) Supported browsers</h3>
+<pre>    Opera 11.1+
+    Google Chrome 6.0+
+    Firefox 3.6+
+    Safari 6+
+    IE 10.0+
+</pre>  
+
+		<hr />
+
+		
+	</div><!-- end div .container -->
+</body>
+</html>
